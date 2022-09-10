@@ -2,10 +2,8 @@ import React from 'react';
 import { useContext } from 'react';
 import Card from './Card';
 import { hideContext } from '../context';
-// import useFetch from '../useFetch';
 import Loading from './Loading';
 const Home = () => {
-	// const { products, loading } = useFetch(`https://fakestoreapi.com/products`);
 	const { hide, setHide, products, loading } = useContext(hideContext);
 	const menClothing = "men's clothing";
 	const womenClothing = "women's clothing";
