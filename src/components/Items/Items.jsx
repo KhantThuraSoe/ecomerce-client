@@ -14,7 +14,7 @@ const Items = ({ setIsCheckedOut, user, array, setArray, onRemove }) => {
 		setArray([]);
 	};
 	const handleCheckOut = async () => {
-		const URL = 'http://localhost:8000/orders';
+		const URL = 'https://ktrs-web-shop.herokuapp.com/orders';
 		//get current user info
 
 		// const { userId, userName, email } = user;
