@@ -5,4 +5,8 @@ const ProtectedRoute = ({ user, children }) => {
 	return children;
 };
 
-export default ProtectedRoute;
+const AdminProtectedRoute = ({ admin, children }) => {
+	if (!admin) return <Navigate to="/admin_login" />;
+	return children;
+};
+export { ProtectedRoute, AdminProtectedRoute };

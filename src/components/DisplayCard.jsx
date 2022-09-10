@@ -31,30 +31,30 @@ export const DisplayCard = () => {
 	) : (
 		<div
 			className={
-				'absolute z-30 bg-white w-full h-screen top-0 left-0 flex items-center justify-center'
+				'fixed z-30 bg-white w-full h-screen max-h-screen top-0 left-0 flex items-center justify-center'
 			}
 		>
 			<div className="relative w-[600px] px-4 h-auto bg-white flex flex-col justify-center rounded-lg">
 				<IoIosCloseCircleOutline
 					onClick={handleClick}
 					size="30px"
-					className="absolute top-2 right-2 cursor-pointer"
+					className="absolute text-red-600 cursor-pointer top-6 right-2"
 				/>
 				<img
 					src={image}
 					alt="product_image"
-					className="bg bg-contain w-[200px] h-[200px] mx-auto my-4"
+					className="bg bg-contain w-[150px] h-[150px] mx-auto my-4 mt-10"
 				/>
 				<h2 className="font-[800] text-[15px] leading leading-tight my-2">
 					{title}
 				</h2>
-				<h3 className="font-semibold mb-2 tracking-wide text-gray-500">
+				<h3 className="mb-2 font-semibold tracking-wide text-gray-500">
 					{priceMMK} MMK
 				</h3>
 				<h4 className="font-medium text-gray-600 text-[12px] my-2">
 					{description}
 				</h4>
-				<div className="inline-flex justify-center items-center">
+				<div className="inline-flex items-center justify-center">
 					<button
 						onClick={() => {
 							if (quantity < 2) {
@@ -83,9 +83,9 @@ export const DisplayCard = () => {
 					</div>
 				</div>
 
-				<div className="w-full flex items-center justify-center">
+				<div className="flex items-center justify-center w-full">
 					<button
-						className="my-4 font-bold bg-yellow-500 w-[200px] py-2 rounded-md hover:shadow hover:scale-110 duration-300"
+						className="mt-4 mb-10 font-bold bg-yellow-500 w-[200px] py-2 rounded-md hover:shadow hover:scale-110 duration-300"
 						onClick={() => {
 							setHide(!hide);
 							let c = count;

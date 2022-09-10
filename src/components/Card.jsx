@@ -10,22 +10,22 @@ const Card = ({ hide, setHide, id, title, img, price, desc }) => {
 	return (
 		<div
 			onClick={handleClick}
-			className="w-[250px] h-[400px] bg-white flex flex-col justify-center shadow-[#00000059] shadow-sm px-2 rounded-lg cursor-pointer transform hover:scale-110 duration-500"
+			className="w-[230px] h-[350px] bg-white flex flex-col justify-center shadow-[#0000002b] shadow-sm px-2 rounded-lg cursor-pointer hover:shadow-black duration-500"
 		>
 			<img
 				src={img}
 				alt="product_image"
-				className="bg bg-contain w-[200px] h-[200px] mx-auto my-4"
+				className="bg bg-contain w-[180px] h-[180px] mx-auto my-4"
 			/>
 			<h2 className="font-[800] text-[15px] leading leading-tight my-2">
 				{title}
 			</h2>
-			<h3 className="font-semibold mb-2 tracking-wide text-gray-500">
+			<h3 className="my-3 font-semibold tracking-wide text-gray-500">
 				{price * $_IN_KYAT} MMK || {price} $
 			</h3>
-			<h4 className="font-medium text-gray-600 text-[12px] my-2">
+			{/* <h4 className="font-medium text-gray-600 text-[12px] my-2">
 				{desc.substr(0, 70)}...
-			</h4>
+			</h4> */}
 		</div>
 	);
 };

@@ -4,4 +4,5 @@ export const productIdContext = createContext(null);
 export const qtyContext = createContext(null);
 export const countContext = createContext(null);
 export const arrayContext = createContext(null);
+export const historyContext = createContext(null);
 // export const userContext = createContext(null);

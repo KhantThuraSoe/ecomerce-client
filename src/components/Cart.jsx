@@ -22,24 +22,54 @@
  * 	checkout (user)
  
  */
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { arrayContext, productIdContext } from '../context';
+import { useNavigate } from 'react-router-dom';
 
-import { FaTimes } from 'react-icons/fa';
+import Items from './Items/Items';
+const Cart = ({ user }) => {
+	const [isCheckedOut, setIsCheckedOut] = useState(false);
 
-const Cart = () => {
 	const { hasId } = useContext(productIdContext);
 	const { array, setArray } = useContext(arrayContext);
+	const navigate = useNavigate();
 	function handleRemove(i) {
 		const newArray = array.filter((_, index) => index !== i);
 		setArray(newArray);
 	}
-	if (hasId && array.length !== 0) {
-		//pass parent state totalPrice to control the totalPrice
-		return <Items array={array} setArray={setArray} onRemove={handleRemove} />;
+	if (array.length === 0 && isCheckedOut) {
+		return (
+			<div className="flex flex-col items-center justify-center w-full h-screen ">
+				<h1 className="text-[3rem] my-4 text-green-600">Thanks!</h1>
+				<div className="flex items-center justify-center">
+					<button
+						className="mx-2 px-2 outline-none text-blue-600 border-blue-600 border-[2px] rounded-md hover:bg-blue-600 hover:text-white duration-300"
+						onClick={() => navigate('/')}
+					>
+						Home
+					</button>
+					<button
+						className="mx-2 px-2 outline-none text-blue-600 border-blue-600 border-[2px] rounded-md hover:bg-blue-600 hover:text-white duration-300"
+						onClick={() => navigate('/profile')}
+					>
+						profile
+					</button>
+				</div>
+			</div>
+		);
+	} else if (hasId && array.length !== 0) {
+		return (
+			<Items
+				setIsCheckedOut={setIsCheckedOut}
+				user={user}
+				array={array}
+				setArray={setArray}
+				onRemove={handleRemove}
+			/>
+		);
 	} else {
 		return (
-			<div className="w-full h-screen flex items-start justify-center text-red-600 pt-28">
+			<div className="flex items-start justify-center w-full h-screen text-red-600 pt-28">
 				No item in cart currently!
 			</div>
 		);
@@ -47,60 +77,3 @@ const Cart = () => {
 };
 
 export default Cart;
-const Items = ({ array, setArray, onRemove }) => {
-	const $_IN_KYAT = 2000;
-	let tp = 0;
-	const handleEmpty = () => {
-		setArray([]);
-	};
-	return (
-		<div className="w-full h-auto pt-[100px] flex flex-col gap-1">
-			{/* add item price to totalPrice in every item iteration */}
-			{array.map((item, index) => {
-				tp += item.price * item.qty * $_IN_KYAT;
-				return <Item key={index} i={index} item={item} onRemove={onRemove} />;
-			})}
-			<div className="w-[80%] mx-auto my-4 flex justify-end text-black text-xl font-extrabold">
-				Total : {tp} MMK
-			</div>
-			<div className="w-[300px] mx-auto my-4 flex items-center justify-center gap-3">
-				<button
-					// onClick={handleCheckOut}
-					className="px-4 py-1 font-bold text-gray-100 bg-yellow-500 hover:text-gray-500 hover:bg-transparent hover:border-2 hover:border-yellow-500 duration-300 rounded-md"
-				>
-					Check out
-				</button>
-				<button
-					onClick={handleEmpty}
-					className="px-4 py-1 font-bold text-gray-100 bg-red-600 hover:text-gray-500 hover:bg-transparent hover:border-2 hover:border-red-600 duration-300 rounded-md"
-				>
-					Empty cart
-				</button>
-			</div>
-		</div>
-	);
-};
-const Item = (props) => {
-	const $_IN_KYAT = 2000;
-	const { item, i, onRemove } = props;
-
-	const PRICE_IN_MMK = Math.round(item.price * $_IN_KYAT);
-
-	return (
-		<div className="relative w-[80%] mx-auto pr-3 pb-2 border-b-2 flex items-center justify-around">
-			<FaTimes
-				onClick={() => onRemove(i)}
-				className="absolute top-[35%] right-2 text-gray-500 cursor-pointer"
-			/>
-			<img src={item.image} alt="product_image" className="w-[80px] h-auto" />
-			<h2>{item.title.slice(0, 20)}...</h2>
-			<div className="flex-col items-center justify-center">
-				<h2 className="my-1">Quantity</h2>
-				<h3 className="flex justify-center font-bold">{item.qty}</h3>
-			</div>
-			<h3 className="font-semibold mb-2 tracking-wide text-gray-500">
-				{PRICE_IN_MMK * item.qty} MMK
-			</h3>
-		</div>
-	);
-};
