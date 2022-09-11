@@ -18,7 +18,7 @@ const NavBar = (props) => {
 					to="/"
 					className="ml-[.5rem] w-auto sm:ml-[2rem] sm:font-bold sm:text-[25px] md:text-[30px] font-semibold text-[20px] text-purple-500"
 				>
-					Comerce.
+					Commerce.
 				</Link>
 				<div className="md:w-[30%] md:flex md:justify-around hidden">
 					<NavLink
