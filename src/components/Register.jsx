@@ -92,7 +92,7 @@ const Register = () => {
 					</label>
 					<input
 						ref={pwRef}
-						type="text"
+						type="password"
 						id="pw"
 						required
 						placeholder="Enter password ..."
@@ -104,7 +104,7 @@ const Register = () => {
 
 					<input
 						ref={cpwRef}
-						type="text"
+						type="password"
 						id="re-pw"
 						placeholder="Confirm password ..."
 						required

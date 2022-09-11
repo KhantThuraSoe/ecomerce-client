@@ -65,7 +65,7 @@ const Login = ({ setUser }) => {
 					</label>
 					<input
 						onChange={(e) => setPassword(e.target.value.toString())}
-						type="text"
+						type="password"
 						id="password"
 						value={password}
 						placeholder="Enter password ..."
